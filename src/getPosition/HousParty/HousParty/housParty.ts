@@ -20,6 +20,7 @@ export async function housPartyGetSelector(type: string, SelectorData: string) {
             // replace console.dir with your callback to access individual elements
 
             await selector.forEach(console.dir);
+            return selector
 
       }
 
@@ -52,6 +53,7 @@ export async function housPartyGetID(ID: string) {
             // replace console.dir with your callback to access individual elements
 
             await selector.forEach(console.dir);
+            return selector
       }
 
       finally {
@@ -74,6 +76,7 @@ export async function housPartyGetLotSelector() {
             }
 
             await selector.forEach(console.dir);
+            return selector
 
       }
 
