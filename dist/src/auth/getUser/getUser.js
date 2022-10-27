@@ -15,22 +15,17 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 function getUser(ID) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const database = connect.client.db("insertDB");
-            const movies = database.collection("Client");
-            let ObjectId = require('mongodb').ObjectId;
-            let id = ID;
-            let o_id = new ObjectId(id);
-            console.log("Hello");
-            const selector = movies.find({ _id: o_id });
-            if ((yield selector.count()) === 0) {
-                console.log("No documents found!");
-            }
-            yield selector.forEach(console.dir);
-            return selector;
+        const database = connect.client.db("insertDB");
+        const movies = database.collection("Client");
+        let ObjectId = require('mongodb').ObjectId;
+        let id = ID;
+        let o_id = new ObjectId(id);
+        const selector = movies.find({ _id: o_id });
+        if ((yield selector.count()) === 0) {
+            console.log("No documents found!");
         }
-        finally {
-        }
+        yield selector.forEach(console.dir);
+        return selector;
     });
 }
 exports.getUser = getUser;

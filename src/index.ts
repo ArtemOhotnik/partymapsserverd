@@ -19,11 +19,11 @@ let bodyParser = require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.get(`/api/id/:id`, (req, res) => {
-    housGet.housPartyGetID(req.params.id).catch(console.dir);
+    housGet.housPartyGetID(res, req.params.id).catch(console.dir);
 })
 
 app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
-    housGet.housPartyGetSelector(req.params.type, req.params.typeData).catch(console.dir);
+    housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
     res.send(req.params)
 })
 
@@ -34,7 +34,7 @@ app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
     let prise = Number(req.params.prise)
     let dataTime = Number(req.params.dataTime)
 
-    housGet.housPartyGetLotSelector(lt, lg, type, prise, dataTime).catch(console.dir)
+    housGet.housPartyGetLotSelector(res, lt, lg, type, prise, dataTime).catch(console.dir)
     res.send(req.params)
 })
 
@@ -51,11 +51,11 @@ app.post('/api/homeEvent', urlencodedParser, function (req, res )  {
 
 
     console.log(info)
-    housePartyPost.housPartyPost(latitude, longitude, type, info, price, dataTime).catch(console.dir);
+    housePartyPost.housPartyPost(res, latitude, longitude, type, info, price, dataTime).catch(console.dir);
     return res.status(201);
 })
 
-app.get('/api/homeEvent/putData/:ID/:type/:typeData', urlencodedParser, function (req, res) {
+app.put('/api/homeEvent/putData/:ID/:type/:typeData', urlencodedParser, function (req, res) {
     let type = req.params.type
     let typeData = req.params.typeData
     let ID  = req.params.ID
@@ -103,12 +103,10 @@ app.post('/api/auth/signin', urlencodedParser ,(req, res) => {
 app.get('/api/auth/logout', (req, res) => {
     auth.logout().catch(console.dir)
     res.send("logout")
-
 }) //це гавно не написано
 
 app.get('/api/auth/getUser/:ID', (req, res) => {
     let ID = req.params.ID
-
     getUser.getUser(ID).catch(console.dir)
 })
 

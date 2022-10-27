@@ -14,100 +14,91 @@ const connect = require('../../../db/connect/connect');
 const filterSchema = require("../../../models/filter");
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
-function housPartyGetSelector(type, SelectorData) {
+function housPartyGetSelector(res, type, SelectorData) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const database = connect.client.db("insertDB");
-            const movies = database.collection("Event");
-            const selector = movies.find({ type: SelectorData });
-            if ((yield selector.count()) === 0) {
-                console.log("No documents found!");
-            }
-            // replace console.dir with your callback to access individual elements
-            yield selector.forEach(console.dir);
-            return selector;
+        const database = connect.client.db("insertDB");
+        const movies = database.collection("Event");
+        const selector = movies.find({ type: SelectorData });
+        if ((yield selector.count()) === 0) {
+            console.log("No documents found!");
         }
-        finally {
-        }
+        // replace console.dir with your callback to access individual elements
+        yield selector.forEach(console.dir);
+        return selector;
+        return res.sendStatus(200);
     });
 }
 exports.housPartyGetSelector = housPartyGetSelector;
-function housPartyGetID(ID) {
+function housPartyGetID(res, ID) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const database = connect.client.db("insertDB");
-            const movies = database.collection("Event");
-            let ObjectId = require('mongodb').ObjectId;
-            let id = ID;
-            let o_id = new ObjectId(id);
-            const selector = movies.find({ _id: o_id });
-            if ((yield selector.count()) === 0) {
-                console.log("No documents found!");
-            }
-            // replace console.dir with your callback to access individual elements
-            yield selector.forEach(console.dir);
-            return selector;
+        const database = connect.client.db("insertDB");
+        const movies = database.collection("Event");
+        let ObjectId = require('mongodb').ObjectId;
+        let id = ID;
+        let o_id = new ObjectId(id);
+        const selector = movies.find({ _id: o_id });
+        if ((yield selector.count()) === 0) {
+            console.log("No documents found!");
         }
-        finally {
-        }
+        // replace console.dir with your callback to access individual elements
+        yield selector.forEach(console.dir);
+        return selector;
+        return res.sendStatus(200);
     });
 }
 exports.housPartyGetID = housPartyGetID;
-function housPartyGetLotSelector(latitude, longitude, type, price, dataTime) {
+function housPartyGetLotSelector(res, latitude, longitude, type, price, dataTime) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const database = connect.client.db("insertDB");
-            const movies = database.collection("Event");
-            let boolType;
-            let boolLT;
-            let boolLG;
-            let boolPrise;
-            let boolDataTime;
-            if (type == "null") {
-                boolType = false;
-            }
-            else {
-                boolType = true;
-            }
-            if (String(latitude) == "null") {
-                boolLT = false;
-            }
-            else {
-                boolLT = true;
-            }
-            if (String(longitude) == "null") {
-                boolLG = false;
-            }
-            else {
-                boolLG = true;
-            }
-            if (String(price) == "null") {
-                boolPrise = false;
-            }
-            else {
-                boolPrise = true;
-            }
-            if (String(dataTime) == "null") {
-                boolDataTime = false;
-            }
-            else {
-                boolDataTime = true;
-            }
-            const selector = movies.find({
-                'latitude': boolLT ? latitude : { $exists: true, $ne: null },
-                'longitude': boolLG ? longitude : { $exists: true, $ne: null },
-                'type': boolType ? type : { $exists: true, $ne: null },
-                'price': boolPrise ? price : { $exists: true, $ne: null },
-                'dataTime': boolDataTime ? dataTime : { $exists: true, $ne: null },
-            });
-            if ((yield selector.count()) === 0) {
-                console.log("No documents found!");
-            }
-            yield selector.forEach(console.dir);
-            return selector;
+        const database = connect.client.db("insertDB");
+        const movies = database.collection("Event");
+        let boolType;
+        let boolLT;
+        let boolLG;
+        let boolPrise;
+        let boolDataTime;
+        if (type == "null") {
+            boolType = false;
         }
-        finally {
+        else {
+            boolType = true;
         }
+        if (String(latitude) == "null") {
+            boolLT = false;
+        }
+        else {
+            boolLT = true;
+        }
+        if (String(longitude) == "null") {
+            boolLG = false;
+        }
+        else {
+            boolLG = true;
+        }
+        if (String(price) == "null") {
+            boolPrise = false;
+        }
+        else {
+            boolPrise = true;
+        }
+        if (String(dataTime) == "null") {
+            boolDataTime = false;
+        }
+        else {
+            boolDataTime = true;
+        }
+        const selector = movies.find({
+            'latitude': boolLT ? latitude : { $exists: true, $ne: null },
+            'longitude': boolLG ? longitude : { $exists: true, $ne: null },
+            'type': boolType ? type : { $exists: true, $ne: null },
+            'price': boolPrise ? price : { $exists: true, $ne: null },
+            'dataTime': boolDataTime ? dataTime : { $exists: true, $ne: null },
+        });
+        if ((yield selector.count()) === 0) {
+            console.log("No documents found!");
+        }
+        yield selector.forEach(console.dir);
+        return selector;
+        return res.sendStatus(200);
     });
 }
 exports.housPartyGetLotSelector = housPartyGetLotSelector;

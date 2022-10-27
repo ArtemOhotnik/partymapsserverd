@@ -12,10 +12,10 @@ exports.app = express();
 let bodyParser = require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 exports.app.get(`/api/id/:id`, (req, res) => {
-    housGet.housPartyGetID(req.params.id).catch(console.dir);
+    housGet.housPartyGetID(res, req.params.id).catch(console.dir);
 });
 exports.app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
-    housGet.housPartyGetSelector(req.params.type, req.params.typeData).catch(console.dir);
+    housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
     res.send(req.params);
 });
 exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
@@ -24,7 +24,7 @@ exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res
     let type = req.params.type;
     let prise = Number(req.params.prise);
     let dataTime = Number(req.params.dataTime);
-    housGet.housPartyGetLotSelector(lt, lg, type, prise, dataTime).catch(console.dir);
+    housGet.housPartyGetLotSelector(res, lt, lg, type, prise, dataTime).catch(console.dir);
     res.send(req.params);
 });
 exports.app.post('/api/homeEvent', urlencodedParser, function (req, res) {
@@ -35,10 +35,10 @@ exports.app.post('/api/homeEvent', urlencodedParser, function (req, res) {
     let price = req.body.price;
     let dataTime = req.body.dataTime;
     console.log(info);
-    housePartyPost.housPartyPost(latitude, longitude, type, info, price, dataTime).catch(console.dir);
+    housePartyPost.housPartyPost(res, latitude, longitude, type, info, price, dataTime).catch(console.dir);
     return res.status(201);
 });
-exports.app.get('/api/homeEvent/putData/:ID/:type/:typeData', urlencodedParser, function (req, res) {
+exports.app.put('/api/homeEvent/putData/:ID/:type/:typeData', urlencodedParser, function (req, res) {
     let type = req.params.type;
     let typeData = req.params.typeData;
     let ID = req.params.ID;

@@ -6,8 +6,7 @@ const uri = "mongodb+srv://ArtemOhotnik:95819581@cluster0.zq1wfxb.mongodb.net/?r
 const client = new MongoClient(uri);
 const Event = require("../../../models/Event")
 
-export async function housPartyPost(latitude: number, longitude: number, type: string , info: string, price: number, dataTime: number) {
-    try {
+export async function housPartyPost(res: any, latitude: number, longitude: number, type: string , info: string, price: number, dataTime: number) {
         const database = client.db("insertDB");
         const homeEvent = database.collection("Event");
 
@@ -36,7 +35,6 @@ export async function housPartyPost(latitude: number, longitude: number, type: s
       //  const options = { ordered: true };
         //const result = await homeEvent.insertMany(EventModel, options);
         console.log('201, ok');
-    } finally {
+        return res.sendStatus(200)
 
-    }
 }

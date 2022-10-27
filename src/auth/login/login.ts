@@ -6,7 +6,6 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
 export async function login(res: any, usernameData: any, passwordData: any) {
-    try {
         const database = connect.client.db("insertDB");
         const movies = database.collection("Client");
 
@@ -34,11 +33,4 @@ export async function login(res: any, usernameData: any, passwordData: any) {
 
 
         }
-
-
-    }
-
-    finally {
-
-    }
 }

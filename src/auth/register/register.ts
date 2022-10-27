@@ -9,7 +9,6 @@ const mongoose = require('mongoose');
 const User = require('../../models/User')
 
 export async function register(res: any, usernameData: any, passwordData: any) {
-    try {
         const database = connect.client.db("insertDB");
         const movies = database.collection("Client");
 
@@ -50,11 +49,7 @@ export async function register(res: any, usernameData: any, passwordData: any) {
             const options = { ordered: true };
             const result = await movies.insertMany(user, options);
             console.log('201, ok');
+            return res.sendStatus(200)
 
         }
-
-        }
-     finally {
-
-    }
     }

@@ -5,8 +5,8 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
 
-export async function housPartyGetSelector(type: string, SelectorData: string) {
-      try {
+export async function housPartyGetSelector(res: any, type: string, SelectorData: string) {
+
             const database = connect.client.db("insertDB");
             const movies = database.collection("Event");
             const selector = movies.find({ type : SelectorData })
@@ -21,19 +21,11 @@ export async function housPartyGetSelector(type: string, SelectorData: string) {
 
             await selector.forEach(console.dir);
             return selector
-
-      }
-
-      finally {
-
-      }
-
+            return res.sendStatus(200)
 }
 
 
-export async function housPartyGetID(ID: string) {
-      try {
-
+export async function housPartyGetID(res: any, ID: string) {
             const database = connect.client.db("insertDB");
             const movies = database.collection("Event");
             let ObjectId = require('mongodb').ObjectId;
@@ -54,16 +46,10 @@ export async function housPartyGetID(ID: string) {
 
             await selector.forEach(console.dir);
             return selector
-      }
-
-      finally {
-
-      }
-
+            return res.sendStatus(200)
 }
 
-export async function housPartyGetLotSelector(latitude: number, longitude: number, type: string, price: number, dataTime: number) {
-      try {
+export async function housPartyGetLotSelector(res: any, latitude: number, longitude: number, type: string, price: number, dataTime: number) {
             const database = connect.client.db("insertDB");
             const movies = database.collection("Event");
 
@@ -119,10 +105,6 @@ export async function housPartyGetLotSelector(latitude: number, longitude: numbe
 
             await selector.forEach(console.dir);
             return selector
+            return res.sendStatus(200)
 
-      }
-
-      finally {
-
-      }
 }

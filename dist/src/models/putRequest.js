@@ -15,33 +15,25 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 function changeUsername(collection, ID, type, typeData) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const database = connect.client.db("insertDB");
-            const movies = database.collection(collection);
-            let ObjectId = require('mongodb').ObjectId;
-            let id = ID;
-            let o_id = new ObjectId(id);
-            const selector = movies.updateOne({ _id: o_id }, { $set: { username: typeData } });
-            return 200;
-        }
-        finally {
-        }
+        const database = connect.client.db("insertDB");
+        const movies = database.collection(collection);
+        let ObjectId = require('mongodb').ObjectId;
+        let id = ID;
+        let o_id = new ObjectId(id);
+        const selector = movies.updateOne({ _id: o_id }, { $set: { username: typeData } });
+        return 200;
     });
 }
 exports.changeUsername = changeUsername;
 function changePassword(collection, ID, type, typeData) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const database = connect.client.db("insertDB");
-            const movies = database.collection(collection);
-            let ObjectId = require('mongodb').ObjectId;
-            let id = ID;
-            let o_id = new ObjectId(id);
-            const selector = movies.updateOne({ _id: o_id }, { $set: { password: typeData } });
-            return 200;
-        }
-        finally {
-        }
+        const database = connect.client.db("insertDB");
+        const movies = database.collection(collection);
+        let ObjectId = require('mongodb').ObjectId;
+        let id = ID;
+        let o_id = new ObjectId(id);
+        const selector = movies.updateOne({ _id: o_id }, { $set: { password: typeData } });
+        return 200;
     });
 }
 exports.changePassword = changePassword;

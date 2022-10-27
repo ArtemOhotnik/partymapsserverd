@@ -4,7 +4,6 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
 export async function changeUsername( collection: string, ID: string, type: string, typeData: string) {
-    try {
 
         const database = connect.client.db("insertDB");
         const movies = database.collection(collection);
@@ -19,17 +18,11 @@ export async function changeUsername( collection: string, ID: string, type: stri
 
 
         return 200;
-    }
 
-    finally {
-
-    }
 
 }
 
 export async function changePassword( collection: string, ID: string, type: string, typeData: string) {
-    try {
-
         const database = connect.client.db("insertDB");
         const movies = database.collection(collection);
         let ObjectId = require('mongodb').ObjectId;
@@ -43,11 +36,7 @@ export async function changePassword( collection: string, ID: string, type: stri
 
 
         return 200;
-    }
 
-    finally {
-
-    }
 
 }
 
