@@ -6,4 +6,4 @@ exports.MongoClient = require('mongodb').MongoClient;
 exports.mongoose = require('mongoose');
 const app = express();
 exports.uri = "mongodb+srv://ArtemOhotnik:95819581@cluster0.zq1wfxb.mongodb.net/?retryWrites=true&w=majority";
-exports.client = new exports.MongoClient(exports.uri);
+exports.client = new exports.MongoClient(exports.uri, { useUnifiedTopology: true }, { useNewUrlParser: true }, { connectTimeoutMS: 30000 }, { keepAlive: 1 });

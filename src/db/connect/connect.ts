@@ -9,5 +9,3 @@ import {ObjectId} from "mongodb";
     export const client = new MongoClient(uri, { useUnifiedTopology: true}, { useNewUrlParser: true }, { connectTimeoutMS: 30000 }, { keepAlive: 1});
 
 
-
-

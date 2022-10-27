@@ -1,8 +1,8 @@
 const connect = require('../../../db/connect/connect')
 import {ObjectId} from "mongodb";
-
-      const MongoClient = require('mongodb').MongoClient;
-      const mongoose = require('mongoose');
+const filterSchema = require("../../../models/filter")
+const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
 
 export async function housPartyGetSelector(type: string, SelectorData: string) {
@@ -61,12 +61,54 @@ export async function housPartyGetID(ID: string) {
       }
 
 }
-export async function housPartyGetLotSelector() {
+
+export async function housPartyGetLotSelector(latitude: number, longitude: number, type: string, price: number, dataTime: number) {
       try {
             const database = connect.client.db("insertDB");
             const movies = database.collection("Event");
-            const selector = movies.find({
 
+            let boolType
+            let boolLT
+            let boolLG
+            let boolPrise
+            let boolDataTime
+
+            if(type == "null") {
+                  boolType = false
+            } else {
+                  boolType = true
+            }
+
+            if(String(latitude) == "null") {
+                  boolLT = false
+            } else {
+                  boolLT = true
+            }
+
+            if(String(longitude) == "null") {
+                  boolLG = false
+            } else {
+                  boolLG = true
+            }
+
+            if(String(price) == "null") {
+                  boolPrise = false
+            } else {
+                  boolPrise = true
+            }
+
+            if(String(dataTime) == "null") {
+                  boolDataTime = false
+            } else {
+                  boolDataTime = true
+            }
+
+            const selector = movies.find({
+                  'latitude': boolLT ? latitude : { $exists: true, $ne: null },
+                  'longitude': boolLG ? longitude : { $exists: true, $ne: null },
+                  'type': boolType ? type : { $exists: true, $ne: null },
+                  'price': boolPrise ? price : { $exists: true, $ne: null },
+                  'dataTime': boolDataTime ? dataTime : { $exists: true, $ne: null },
             })
 
             if ((await selector.count()) === 0) {

@@ -42,6 +42,7 @@ export async function register(res: any, usernameData: any, passwordData: any) {
                 {
                     username: usernameData,
                     password: hashPassword,
+                    role: "default",
 
                 },
             ];

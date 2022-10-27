@@ -49,6 +49,7 @@ function register(res, usernameData, passwordData) {
                     {
                         username: usernameData,
                         password: hashPassword,
+                        role: "default",
                     },
                 ];
                 const options = { ordered: true };
