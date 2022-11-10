@@ -63,9 +63,9 @@ exports.app.post('/api/auth/signup', urlencodedParser, (req, res) => {
     auth.signup(res, username, password).catch(console.dir);
     console.log("200");
 });
-exports.app.post('/api/auth/signin', urlencodedParser, (req, res) => {
-    let username = req.body.username;
-    let password = req.body.password;
+exports.app.post('/api/auth/signin/:username/:password', urlencodedParser, (req, res) => {
+    let username = req.params.username;
+    let password = req.params.password;
     auth.signin(res, username, password).catch(console.dir);
     console.log("200");
 });

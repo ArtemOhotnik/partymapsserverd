@@ -90,10 +90,10 @@ app.post('/api/auth/signup', urlencodedParser, (req, res) => {
 
 })
 
-app.post('/api/auth/signin', urlencodedParser ,(req, res) => {
+app.post('/api/auth/signin/:username/:password', urlencodedParser ,(req, res) => {
 
-    let username = req.body.username
-    let password = req.body.password
+    let username = req.params.username
+    let password = req.params.password
 
     auth.signin(res, username, password).catch(console.dir)
     console.log("200")
