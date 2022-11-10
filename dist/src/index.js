@@ -17,6 +17,7 @@ exports.app.get(`/api/id/:id`, (req, res) => {
 exports.app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
     housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
     res.send(req.params);
+    return res;
 });
 exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
     let lt = Number(req.params.lt);
@@ -67,7 +68,6 @@ exports.app.post('/api/auth/signin/:username/:password', urlencodedParser, (req,
     let username = req.params.username;
     let password = req.params.password;
     auth.signin(res, username, password).catch(console.dir);
-    return res;
     console.log("200");
 });
 exports.app.get('/api/auth/logout', (req, res) => {
