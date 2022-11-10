@@ -67,6 +67,7 @@ exports.app.post('/api/auth/signin/:username/:password', urlencodedParser, (req,
     let username = req.params.username;
     let password = req.params.password;
     auth.signin(res, username, password).catch(console.dir);
+    return res;
     console.log("200");
 });
 exports.app.get('/api/auth/logout', (req, res) => {
