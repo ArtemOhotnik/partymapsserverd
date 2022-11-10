@@ -19,7 +19,7 @@ export async function login(res: any, usernameData: any, passwordData: any) {
             console.log(user.password)
             console.log("Heelo")
 
-            const validPassword = bcrypt.compareSync(passwordData, user.password)
+            const validPassword = passwordData
 
             if(!validPassword) {
                 console.log("Поганий пароль")

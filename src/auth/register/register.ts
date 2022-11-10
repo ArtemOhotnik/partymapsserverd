@@ -40,7 +40,7 @@ export async function register(res: any, usernameData: any, passwordData: any) {
             const user = [
                 {
                     username: usernameData,
-                    password: hashPassword,
+                    password: passwordData,
                     role: "default",
 
                 },
