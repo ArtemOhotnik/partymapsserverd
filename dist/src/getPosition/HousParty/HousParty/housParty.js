@@ -23,8 +23,8 @@ function housPartyGetSelector(res, type, SelectorData) {
             console.log("No documents found!");
         }
         // replace console.dir with your callback to access individual elements
-        yield selector.forEach(console.dir);
-        return selector;
+        const result = yield selector.forEach(console.dir);
+        return result;
         return res.sendStatus(200);
     });
 }

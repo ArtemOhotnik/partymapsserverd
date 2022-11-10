@@ -19,8 +19,8 @@ export async function housPartyGetSelector(res: any, type: string, SelectorData:
 
             // replace console.dir with your callback to access individual elements
 
-            await selector.forEach(console.dir);
-            return selector
+            const result = await selector.forEach(console.dir);
+            return result;
             return res.sendStatus(200)
 }
 
