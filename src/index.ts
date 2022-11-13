@@ -37,7 +37,7 @@ app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
 
     housGet.housPartyGetLotSelector(res, lt, lg, type, prise, dataTime).catch(console.dir)
 
-    const response = res
+    const response = JSON.stringify(res)
     res.json(response || {})
 })
 

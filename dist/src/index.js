@@ -26,7 +26,7 @@ exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res
     let prise = Number(req.params.prise);
     let dataTime = Number(req.params.dataTime);
     housGet.housPartyGetLotSelector(res, lt, lg, type, prise, dataTime).catch(console.dir);
-    const response = res;
+    const response = JSON.stringify(res);
     res.json(response || {});
 });
 exports.app.post('/api/homeEvent', urlencodedParser, function (req, res) {
