@@ -16,7 +16,8 @@ export async function housPartyGetSelector(res: any, type: string, SelectorData:
                   console.log("No documents found!");
 
             }
-            const response = JSON.stringify(selector)
+            const preResponse = selector.forEach(console.dir)
+            const response = JSON.stringify(preResponse);
             res.json(response || {})
             return res.sendStatus(200);
             return response;
