@@ -18,7 +18,7 @@ export async function housPartyGetSelector(res: any, type: string, SelectorData:
             }
             const preResponse = selector.forEach(console.dir)
             const response = JSON.stringify(preResponse);
-            res.json(response || {})
+            res.send(response || {})
             return res.sendStatus(200);
             return response;
 }

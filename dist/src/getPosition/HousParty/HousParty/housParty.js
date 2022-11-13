@@ -24,7 +24,7 @@ function housPartyGetSelector(res, type, SelectorData) {
         }
         const preResponse = selector.forEach(console.dir);
         const response = JSON.stringify(preResponse);
-        res.json(response || {});
+        res.send(response || {});
         return res.sendStatus(200);
         return response;
     });

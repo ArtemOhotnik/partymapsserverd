@@ -24,7 +24,7 @@ exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res
     let prise = Number(req.params.prise);
     let dataTime = Number(req.params.dataTime);
     const response = housGet.housPartyGetLotSelector(res, lt, lg, type, prise, dataTime).catch(console.dir);
-    res.json(response || {});
+    res.send(response || {});
 });
 exports.app.post('/api/homeEvent', urlencodedParser, function (req, res) {
     let latitude = req.body.latitude;

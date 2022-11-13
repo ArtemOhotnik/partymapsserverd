@@ -35,7 +35,7 @@ app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
 
     const response = housGet.housPartyGetLotSelector(res, lt, lg, type, prise, dataTime).catch(console.dir)
 
-    res.json(response || {})
+    res.send(response || {})
 })
 
 app.post('/api/homeEvent', urlencodedParser, function (req, res )  {
