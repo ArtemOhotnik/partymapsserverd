@@ -22,8 +22,8 @@ function housPartyGetSelector(res, type, SelectorData) {
         if ((yield selector.count()) === 0) {
             console.log("No documents found!");
         }
-        return res.send(selector);
-        return selector;
+        const response = selector;
+        res.json(response || {});
         return res.sendStatus(200);
     });
 }
@@ -41,7 +41,8 @@ function housPartyGetID(res, ID) {
         }
         // replace console.dir with your callback to access individual elements
         yield selector.forEach(console.dir);
-        return res.send(selector);
+        const response = selector;
+        res.json(response || {});
         return res.sendStatus(200);
     });
 }
@@ -96,7 +97,8 @@ function housPartyGetLotSelector(res, latitude, longitude, type, price, dataTime
             console.log("No documents found!");
         }
         yield selector.forEach(console.dir);
-        return res.send(selector);
+        const response = selector;
+        res.json(response || {});
         return res.sendStatus(200);
     });
 }

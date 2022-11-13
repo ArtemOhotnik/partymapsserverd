@@ -16,7 +16,7 @@ exports.app.get(`/api/id/:id`, (req, res) => {
 });
 exports.app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
     housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
-    res.json(res);
+    res.end(JSON.stringify(req.body, null, 2));
 });
 exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
     let lt = Number(req.params.lt);
@@ -25,7 +25,8 @@ exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res
     let prise = Number(req.params.prise);
     let dataTime = Number(req.params.dataTime);
     housGet.housPartyGetLotSelector(res, lt, lg, type, prise, dataTime).catch(console.dir);
-    res.json(res);
+    const response = res;
+    res.json(response || {});
 });
 exports.app.post('/api/homeEvent', urlencodedParser, function (req, res) {
     let latitude = req.body.latitude;
@@ -36,6 +37,8 @@ exports.app.post('/api/homeEvent', urlencodedParser, function (req, res) {
     let dataTime = req.body.dataTime;
     console.log(info);
     housePartyPost.housPartyPost(res, latitude, longitude, type, info, price, dataTime).catch(console.dir);
+    const response = res;
+    res.json(response || {});
     return res.status(201);
 });
 exports.app.put('/api/homeEvent/putData/:ID/:type/:typeData', urlencodedParser, function (req, res) {
