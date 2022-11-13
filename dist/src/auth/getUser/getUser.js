@@ -13,7 +13,7 @@ exports.getUser = void 0;
 const connect = require('../../db/connect/connect');
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
-function getUser(ID) {
+function getUser(res, ID) {
     return __awaiter(this, void 0, void 0, function* () {
         const database = connect.client.db("insertDB");
         const movies = database.collection("Client");
@@ -25,7 +25,7 @@ function getUser(ID) {
             console.log("No documents found!");
         }
         yield selector.forEach(console.dir);
-        return selector;
+        return res.send(selector);
     });
 }
 exports.getUser = getUser;

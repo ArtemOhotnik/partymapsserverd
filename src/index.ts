@@ -24,7 +24,7 @@ app.get(`/api/id/:id`, (req, res) => {
 
 app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
     housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
-    res.send(req.params)
+    res.json(res)
 })
 
 app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
@@ -35,7 +35,7 @@ app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
     let dataTime = Number(req.params.dataTime)
 
     housGet.housPartyGetLotSelector(res, lt, lg, type, prise, dataTime).catch(console.dir)
-    res.send(req.params)
+    res.json(res)
 })
 
 app.post('/api/homeEvent', urlencodedParser, function (req, res )  {

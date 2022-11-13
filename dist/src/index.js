@@ -13,11 +13,10 @@ let bodyParser = require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 exports.app.get(`/api/id/:id`, (req, res) => {
     housGet.housPartyGetID(res, req.params.id).catch(console.dir);
-    return res.send();
 });
 exports.app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
     housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
-    res.send(req.params);
+    res.json(res);
 });
 exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
     let lt = Number(req.params.lt);
@@ -26,7 +25,7 @@ exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res
     let prise = Number(req.params.prise);
     let dataTime = Number(req.params.dataTime);
     housGet.housPartyGetLotSelector(res, lt, lg, type, prise, dataTime).catch(console.dir);
-    res.send(req.params);
+    res.json(res);
 });
 exports.app.post('/api/homeEvent', urlencodedParser, function (req, res) {
     let latitude = req.body.latitude;
@@ -76,7 +75,7 @@ exports.app.get('/api/auth/logout', (req, res) => {
 }); //це гавно не написано
 exports.app.get('/api/auth/getUser/:ID', (req, res) => {
     let ID = req.params.ID;
-    getUser.getUser(ID).catch(console.dir);
+    getUser.getUser(res, ID).catch(console.dir);
 });
 exports.app.listen(process.env.PORT || 3000);
 console.log(`Server started 3000`);
