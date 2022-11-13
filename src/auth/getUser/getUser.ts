@@ -3,7 +3,7 @@ import {ObjectId} from "mongodb";
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
-export async function getUser(ID: string) {
+export async function getUser(res: any, ID: string) {
         const database = connect.client.db("insertDB");
         const movies = database.collection("Client");
         let ObjectId = require('mongodb').ObjectId;
@@ -17,7 +17,7 @@ export async function getUser(ID: string) {
         }
 
         await selector.forEach(console.dir);
-        return selector
+        return res.send(selector)
 
 
 }

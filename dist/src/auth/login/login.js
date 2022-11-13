@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = void 0;
 const connect = require('../../db/connect/connect');
+const bcrypt = require('bcryptjs');
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 function login(res, usernameData, passwordData) {

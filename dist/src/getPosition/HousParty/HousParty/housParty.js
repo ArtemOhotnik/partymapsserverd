@@ -22,9 +22,8 @@ function housPartyGetSelector(res, type, SelectorData) {
         if ((yield selector.count()) === 0) {
             console.log("No documents found!");
         }
-        // replace console.dir with your callback to access individual elements
-        const result = yield selector.forEach(console.dir);
-        return result;
+        return selector;
+        return res.send(selector);
         return res.sendStatus(200);
     });
 }
@@ -42,7 +41,7 @@ function housPartyGetID(res, ID) {
         }
         // replace console.dir with your callback to access individual elements
         yield selector.forEach(console.dir);
-        return selector;
+        return res.send(selector);
         return res.sendStatus(200);
     });
 }

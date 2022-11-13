@@ -25,7 +25,6 @@ app.get(`/api/id/:id`, (req, res) => {
 app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
     housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
     res.send(req.params)
-    return res;
 })
 
 app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
@@ -91,13 +90,12 @@ app.post('/api/auth/signup', urlencodedParser, (req, res) => {
 
 })
 
-app.post('/api/auth/signin/:username/:password', urlencodedParser ,(req, res) => {
+app.post('/api/auth/signin', urlencodedParser ,(req, res) => {
 
-    let username = req.params.username
-    let password = req.params.password
+    let username = req.body.username
+    let password = req.body.password
 
     auth.signin(res, username, password).catch(console.dir)
-
     console.log("200")
 
 })
@@ -109,7 +107,7 @@ app.get('/api/auth/logout', (req, res) => {
 
 app.get('/api/auth/getUser/:ID', (req, res) => {
     let ID = req.params.ID
-    getUser.getUser(ID).catch(console.dir)
+    getUser.getUser(res, ID).catch(console.dir)
 })
 
 app.listen(process.env.PORT || 3000)

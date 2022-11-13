@@ -13,11 +13,11 @@ let bodyParser = require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 exports.app.get(`/api/id/:id`, (req, res) => {
     housGet.housPartyGetID(res, req.params.id).catch(console.dir);
+    return res.send();
 });
 exports.app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
     housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
     res.send(req.params);
-    return res;
 });
 exports.app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
     let lt = Number(req.params.lt);
@@ -64,9 +64,9 @@ exports.app.post('/api/auth/signup', urlencodedParser, (req, res) => {
     auth.signup(res, username, password).catch(console.dir);
     console.log("200");
 });
-exports.app.post('/api/auth/signin/:username/:password', urlencodedParser, (req, res) => {
-    let username = req.params.username;
-    let password = req.params.password;
+exports.app.post('/api/auth/signin', urlencodedParser, (req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
     auth.signin(res, username, password).catch(console.dir);
     console.log("200");
 });

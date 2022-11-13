@@ -16,12 +16,9 @@ export async function housPartyGetSelector(res: any, type: string, SelectorData:
                   console.log("No documents found!");
 
             }
-
-            // replace console.dir with your callback to access individual elements
-
-            const result = await selector.forEach(console.dir);
-            return result;
-            return res.sendStatus(200)
+            return res.send(selector)
+            return selector
+            return res.sendStatus(200);
 }
 
 
@@ -45,7 +42,7 @@ export async function housPartyGetID(res: any, ID: string) {
             // replace console.dir with your callback to access individual elements
 
             await selector.forEach(console.dir);
-            return selector
+            return res.send(selector)
             return res.sendStatus(200)
 }
 
@@ -104,7 +101,7 @@ export async function housPartyGetLotSelector(res: any, latitude: number, longit
             }
 
             await selector.forEach(console.dir);
-            return selector
+            return res.send(selector)
             return res.sendStatus(200)
-
+    
 }
