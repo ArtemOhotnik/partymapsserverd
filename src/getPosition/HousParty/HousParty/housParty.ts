@@ -21,7 +21,6 @@ export async function housPartyGetSelector(res: any, type: string, SelectorData:
             return res.sendStatus(200);
 }
 
-
 export async function housPartyGetID(res: any, ID: string) {
             const database = connect.client.db("insertDB");
             const movies = database.collection("Event");
@@ -102,8 +101,8 @@ export async function housPartyGetLotSelector(res: any, latitude: number, longit
             }
 
             await selector.forEach(console.dir);
-    const response = selector
-    res.json(response || {})
+            const response = selector
+            res.json(response || {})
             return res.sendStatus(200)
     
 }

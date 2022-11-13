@@ -24,7 +24,7 @@ app.get(`/api/id/:id`, (req, res) => {
 
 app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
     housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
-    const response = res
+    const response = req
     res.json(response || {})
 })
 
