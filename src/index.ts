@@ -24,8 +24,6 @@ app.get(`/api/id/:id`, (req, res) => {
 
 app.get('/api/selector/:type/typeData/:typeData', (req, res) => {
     housGet.housPartyGetSelector(res, req.params.type, req.params.typeData).catch(console.dir);
-    const response = req
-    res.json(response || {})
 })
 
 app.get('/api/selector/filter/:lt/:lg/:type/:prise/:dataTime', (req, res) => {
