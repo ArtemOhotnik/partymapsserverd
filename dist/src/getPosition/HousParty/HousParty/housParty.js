@@ -25,6 +25,7 @@ function housPartyGetSelector(res, type, SelectorData) {
         const response = JSON.stringify(selector);
         res.json(response || {});
         return res.sendStatus(200);
+        return response;
     });
 }
 exports.housPartyGetSelector = housPartyGetSelector;
